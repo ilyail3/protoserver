@@ -15,7 +15,8 @@
 #include <grpc++/impl/codegen/sync_stream.h>
 
 static const char* SearchService_method_names[] = {
-  "/SearchService/search",
+  "/SearchService/Search",
+  "/SearchService/SayHello",
 };
 
 std::unique_ptr< SearchService::Stub> SearchService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -24,15 +25,24 @@ std::unique_ptr< SearchService::Stub> SearchService::NewStub(const std::shared_p
 }
 
 SearchService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel)
-  : channel_(channel), rpcmethod_search_(SearchService_method_names[0], ::grpc::RpcMethod::NORMAL_RPC, channel)
+  : channel_(channel), rpcmethod_Search_(SearchService_method_names[0], ::grpc::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SayHello_(SearchService_method_names[1], ::grpc::RpcMethod::NORMAL_RPC, channel)
   {}
 
-::grpc::Status SearchService::Stub::search(::grpc::ClientContext* context, const ::SearchRequest& request, ::SearchResponse* response) {
-  return ::grpc::BlockingUnaryCall(channel_.get(), rpcmethod_search_, context, request, response);
+::grpc::Status SearchService::Stub::Search(::grpc::ClientContext* context, const ::SearchRequest& request, ::SearchResponse* response) {
+  return ::grpc::BlockingUnaryCall(channel_.get(), rpcmethod_Search_, context, request, response);
 }
 
-::grpc::ClientAsyncResponseReader< ::SearchResponse>* SearchService::Stub::AsyncsearchRaw(::grpc::ClientContext* context, const ::SearchRequest& request, ::grpc::CompletionQueue* cq) {
-  return new ::grpc::ClientAsyncResponseReader< ::SearchResponse>(channel_.get(), cq, rpcmethod_search_, context, request);
+::grpc::ClientAsyncResponseReader< ::SearchResponse>* SearchService::Stub::AsyncSearchRaw(::grpc::ClientContext* context, const ::SearchRequest& request, ::grpc::CompletionQueue* cq) {
+  return new ::grpc::ClientAsyncResponseReader< ::SearchResponse>(channel_.get(), cq, rpcmethod_Search_, context, request);
+}
+
+::grpc::Status SearchService::Stub::SayHello(::grpc::ClientContext* context, const ::HelloRequest& request, ::HelloReply* response) {
+  return ::grpc::BlockingUnaryCall(channel_.get(), rpcmethod_SayHello_, context, request, response);
+}
+
+::grpc::ClientAsyncResponseReader< ::HelloReply>* SearchService::Stub::AsyncSayHelloRaw(::grpc::ClientContext* context, const ::HelloRequest& request, ::grpc::CompletionQueue* cq) {
+  return new ::grpc::ClientAsyncResponseReader< ::HelloReply>(channel_.get(), cq, rpcmethod_SayHello_, context, request);
 }
 
 SearchService::Service::Service() {
@@ -41,13 +51,25 @@ SearchService::Service::Service() {
       SearchService_method_names[0],
       ::grpc::RpcMethod::NORMAL_RPC,
       new ::grpc::RpcMethodHandler< SearchService::Service, ::SearchRequest, ::SearchResponse>(
-          std::mem_fn(&SearchService::Service::search), this)));
+          std::mem_fn(&SearchService::Service::Search), this)));
+  AddMethod(new ::grpc::RpcServiceMethod(
+      SearchService_method_names[1],
+      ::grpc::RpcMethod::NORMAL_RPC,
+      new ::grpc::RpcMethodHandler< SearchService::Service, ::HelloRequest, ::HelloReply>(
+          std::mem_fn(&SearchService::Service::SayHello), this)));
 }
 
 SearchService::Service::~Service() {
 }
 
-::grpc::Status SearchService::Service::search(::grpc::ServerContext* context, const ::SearchRequest* request, ::SearchResponse* response) {
+::grpc::Status SearchService::Service::Search(::grpc::ServerContext* context, const ::SearchRequest* request, ::SearchResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status SearchService::Service::SayHello(::grpc::ServerContext* context, const ::HelloRequest* request, ::HelloReply* response) {
   (void) context;
   (void) request;
   (void) response;

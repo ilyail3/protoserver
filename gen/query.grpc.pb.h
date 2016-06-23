@@ -28,25 +28,36 @@ class SearchService GRPC_FINAL {
   class StubInterface {
    public:
     virtual ~StubInterface() {}
-    virtual ::grpc::Status search(::grpc::ClientContext* context, const ::SearchRequest& request, ::SearchResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::SearchResponse>> Asyncsearch(::grpc::ClientContext* context, const ::SearchRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::SearchResponse>>(AsyncsearchRaw(context, request, cq));
+    virtual ::grpc::Status Search(::grpc::ClientContext* context, const ::SearchRequest& request, ::SearchResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::SearchResponse>> AsyncSearch(::grpc::ClientContext* context, const ::SearchRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::SearchResponse>>(AsyncSearchRaw(context, request, cq));
+    }
+    virtual ::grpc::Status SayHello(::grpc::ClientContext* context, const ::HelloRequest& request, ::HelloReply* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::HelloReply>> AsyncSayHello(::grpc::ClientContext* context, const ::HelloRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::HelloReply>>(AsyncSayHelloRaw(context, request, cq));
     }
   private:
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::SearchResponse>* AsyncsearchRaw(::grpc::ClientContext* context, const ::SearchRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::SearchResponse>* AsyncSearchRaw(::grpc::ClientContext* context, const ::SearchRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::HelloReply>* AsyncSayHelloRaw(::grpc::ClientContext* context, const ::HelloRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub GRPC_FINAL : public StubInterface {
    public:
     Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel);
-    ::grpc::Status search(::grpc::ClientContext* context, const ::SearchRequest& request, ::SearchResponse* response) GRPC_OVERRIDE;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::SearchResponse>> Asyncsearch(::grpc::ClientContext* context, const ::SearchRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::SearchResponse>>(AsyncsearchRaw(context, request, cq));
+    ::grpc::Status Search(::grpc::ClientContext* context, const ::SearchRequest& request, ::SearchResponse* response) GRPC_OVERRIDE;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::SearchResponse>> AsyncSearch(::grpc::ClientContext* context, const ::SearchRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::SearchResponse>>(AsyncSearchRaw(context, request, cq));
+    }
+    ::grpc::Status SayHello(::grpc::ClientContext* context, const ::HelloRequest& request, ::HelloReply* response) GRPC_OVERRIDE;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::HelloReply>> AsyncSayHello(::grpc::ClientContext* context, const ::HelloRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::HelloReply>>(AsyncSayHelloRaw(context, request, cq));
     }
 
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
-    ::grpc::ClientAsyncResponseReader< ::SearchResponse>* AsyncsearchRaw(::grpc::ClientContext* context, const ::SearchRequest& request, ::grpc::CompletionQueue* cq) GRPC_OVERRIDE;
-    const ::grpc::RpcMethod rpcmethod_search_;
+    ::grpc::ClientAsyncResponseReader< ::SearchResponse>* AsyncSearchRaw(::grpc::ClientContext* context, const ::SearchRequest& request, ::grpc::CompletionQueue* cq) GRPC_OVERRIDE;
+    ::grpc::ClientAsyncResponseReader< ::HelloReply>* AsyncSayHelloRaw(::grpc::ClientContext* context, const ::HelloRequest& request, ::grpc::CompletionQueue* cq) GRPC_OVERRIDE;
+    const ::grpc::RpcMethod rpcmethod_Search_;
+    const ::grpc::RpcMethod rpcmethod_SayHello_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -54,42 +65,80 @@ class SearchService GRPC_FINAL {
    public:
     Service();
     virtual ~Service();
-    virtual ::grpc::Status search(::grpc::ServerContext* context, const ::SearchRequest* request, ::SearchResponse* response);
+    virtual ::grpc::Status Search(::grpc::ServerContext* context, const ::SearchRequest* request, ::SearchResponse* response);
+    virtual ::grpc::Status SayHello(::grpc::ServerContext* context, const ::HelloRequest* request, ::HelloReply* response);
   };
   template <class BaseClass>
-  class WithAsyncMethod_search : public BaseClass {
+  class WithAsyncMethod_Search : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
-    WithAsyncMethod_search() {
+    WithAsyncMethod_Search() {
       ::grpc::Service::MarkMethodAsync(0);
     }
-    ~WithAsyncMethod_search() GRPC_OVERRIDE {
+    ~WithAsyncMethod_Search() GRPC_OVERRIDE {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status search(::grpc::ServerContext* context, const ::SearchRequest* request, ::SearchResponse* response) GRPC_FINAL GRPC_OVERRIDE {
+    ::grpc::Status Search(::grpc::ServerContext* context, const ::SearchRequest* request, ::SearchResponse* response) GRPC_FINAL GRPC_OVERRIDE {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void Requestsearch(::grpc::ServerContext* context, ::SearchRequest* request, ::grpc::ServerAsyncResponseWriter< ::SearchResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestSearch(::grpc::ServerContext* context, ::SearchRequest* request, ::grpc::ServerAsyncResponseWriter< ::SearchResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_search<Service > AsyncService;
   template <class BaseClass>
-  class WithGenericMethod_search : public BaseClass {
+  class WithAsyncMethod_SayHello : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
-    WithGenericMethod_search() {
-      ::grpc::Service::MarkMethodGeneric(0);
+    WithAsyncMethod_SayHello() {
+      ::grpc::Service::MarkMethodAsync(1);
     }
-    ~WithGenericMethod_search() GRPC_OVERRIDE {
+    ~WithAsyncMethod_SayHello() GRPC_OVERRIDE {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status search(::grpc::ServerContext* context, const ::SearchRequest* request, ::SearchResponse* response) GRPC_FINAL GRPC_OVERRIDE {
+    ::grpc::Status SayHello(::grpc::ServerContext* context, const ::HelloRequest* request, ::HelloReply* response) GRPC_FINAL GRPC_OVERRIDE {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSayHello(::grpc::ServerContext* context, ::HelloRequest* request, ::grpc::ServerAsyncResponseWriter< ::HelloReply>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_Search<WithAsyncMethod_SayHello<Service > > AsyncService;
+  template <class BaseClass>
+  class WithGenericMethod_Search : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service *service) {}
+   public:
+    WithGenericMethod_Search() {
+      ::grpc::Service::MarkMethodGeneric(0);
+    }
+    ~WithGenericMethod_Search() GRPC_OVERRIDE {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Search(::grpc::ServerContext* context, const ::SearchRequest* request, ::SearchResponse* response) GRPC_FINAL GRPC_OVERRIDE {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_SayHello : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service *service) {}
+   public:
+    WithGenericMethod_SayHello() {
+      ::grpc::Service::MarkMethodGeneric(1);
+    }
+    ~WithGenericMethod_SayHello() GRPC_OVERRIDE {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SayHello(::grpc::ServerContext* context, const ::HelloRequest* request, ::HelloReply* response) GRPC_FINAL GRPC_OVERRIDE {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }

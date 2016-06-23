@@ -4,15 +4,12 @@
 
 #include "searchservice_search.h"
 
-Status SearchService_Search::process_search_request() {
-    // The actual processing.
-    std::string prefix("Hello ");
-    //reply_.set_message(prefix + request_.query());
+void SearchService_Search::processRequest() {
+    Result* result = reply_.add_results();
+
+    result->set_title(request_.query() + std::string(" Result"));
+    result->set_url(request_.query() + std::string(" Result"));
 
 
-    Result *result = reply_.add_results();
-    result->set_title(prefix + request_.query());
-    result->set_url(prefix + request_.query());
-
-    return Status::OK;
+    responder_.Finish(reply_, Status::OK, this);
 }

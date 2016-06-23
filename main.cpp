@@ -4,6 +4,7 @@
 #include <fstream>
 
 #include "gen/query.grpc.pb.h"
+#include "searchservice_sayhello.h"
 #include "searchservice_search.h"
 
 
@@ -68,13 +69,16 @@ private:
         grpc::SslServerCredentialsOptions ssl_opts;
         ssl_opts.pem_root_certs="";
         ssl_opts.pem_key_cert_pairs.push_back(pkcp);
+        ssl_opts.force_client_auth = true;
         return grpc::SslServerCredentials(ssl_opts);
     };
 
     // This can be run in multiple threads if needed.
     void HandleRpcs() {
         // Spawn a new CallData instance to serve new clients.
-        new SearchService_Search(&service_, cq_.get());
+        (new SearchService_SayHello(&service_, cq_.get()))->Proceed();
+        (new SearchService_Search(&service_, cq_.get()))->Proceed();
+
         void* tag;  // uniquely identifies a request.
         bool ok;
         while (true) {
@@ -85,7 +89,7 @@ private:
             // tells us whether there is any kind of event or cq_ is shutting down.
             GPR_ASSERT(cq_->Next(&tag, &ok));
             GPR_ASSERT(ok);
-            static_cast<SearchService_Search*>(tag)->Proceed();
+            static_cast<SearchService_Function*>(tag)->Proceed();
         }
     }
 

@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='query.proto',
   package='',
   syntax='proto3',
-  serialized_pb=_b('\n\x0bquery.proto\"L\n\rSearchRequest\x12\r\n\x05query\x18\x01 \x01(\t\x12\x13\n\x0bpage_number\x18\x02 \x01(\x05\x12\x17\n\x0fresult_per_page\x18\x03 \x01(\x05\"6\n\x06Result\x12\x0b\n\x03url\x18\x01 \x01(\t\x12\r\n\x05title\x18\x02 \x01(\t\x12\x10\n\x08snippets\x18\x03 \x03(\t\"*\n\x0eSearchResponse\x12\x18\n\x07results\x18\x01 \x03(\x0b\x32\x07.Result2:\n\rSearchService\x12)\n\x06search\x12\x0e.SearchRequest\x1a\x0f.SearchResponseb\x06proto3')
+  serialized_pb=_b('\n\x0bquery.proto\"L\n\rSearchRequest\x12\r\n\x05query\x18\x01 \x01(\t\x12\x13\n\x0bpage_number\x18\x02 \x01(\x05\x12\x17\n\x0fresult_per_page\x18\x03 \x01(\x05\"6\n\x06Result\x12\x0b\n\x03url\x18\x01 \x01(\t\x12\r\n\x05title\x18\x02 \x01(\t\x12\x10\n\x08snippets\x18\x03 \x03(\t\"*\n\x0eSearchResponse\x12\x18\n\x07results\x18\x01 \x03(\x0b\x32\x07.Result\"\x1c\n\x0cHelloRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\"\x19\n\nHelloReply\x12\x0b\n\x03msg\x18\x01 \x01(\t2b\n\rSearchService\x12)\n\x06Search\x12\x0e.SearchRequest\x1a\x0f.SearchResponse\x12&\n\x08SayHello\x12\r.HelloRequest\x1a\x0b.HelloReplyb\x06proto3')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -146,10 +146,74 @@ _SEARCHRESPONSE = _descriptor.Descriptor(
   serialized_end=191,
 )
 
+
+_HELLOREQUEST = _descriptor.Descriptor(
+  name='HelloRequest',
+  full_name='HelloRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='name', full_name='HelloRequest.name', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=193,
+  serialized_end=221,
+)
+
+
+_HELLOREPLY = _descriptor.Descriptor(
+  name='HelloReply',
+  full_name='HelloReply',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='msg', full_name='HelloReply.msg', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=223,
+  serialized_end=248,
+)
+
 _SEARCHRESPONSE.fields_by_name['results'].message_type = _RESULT
 DESCRIPTOR.message_types_by_name['SearchRequest'] = _SEARCHREQUEST
 DESCRIPTOR.message_types_by_name['Result'] = _RESULT
 DESCRIPTOR.message_types_by_name['SearchResponse'] = _SEARCHRESPONSE
+DESCRIPTOR.message_types_by_name['HelloRequest'] = _HELLOREQUEST
+DESCRIPTOR.message_types_by_name['HelloReply'] = _HELLOREPLY
 
 SearchRequest = _reflection.GeneratedProtocolMessageType('SearchRequest', (_message.Message,), dict(
   DESCRIPTOR = _SEARCHREQUEST,
@@ -172,6 +236,20 @@ SearchResponse = _reflection.GeneratedProtocolMessageType('SearchResponse', (_me
   ))
 _sym_db.RegisterMessage(SearchResponse)
 
+HelloRequest = _reflection.GeneratedProtocolMessageType('HelloRequest', (_message.Message,), dict(
+  DESCRIPTOR = _HELLOREQUEST,
+  __module__ = 'query_pb2'
+  # @@protoc_insertion_point(class_scope:HelloRequest)
+  ))
+_sym_db.RegisterMessage(HelloRequest)
+
+HelloReply = _reflection.GeneratedProtocolMessageType('HelloReply', (_message.Message,), dict(
+  DESCRIPTOR = _HELLOREPLY,
+  __module__ = 'query_pb2'
+  # @@protoc_insertion_point(class_scope:HelloReply)
+  ))
+_sym_db.RegisterMessage(HelloReply)
+
 
 import grpc
 from grpc.beta import implementations as beta_implementations
@@ -188,16 +266,26 @@ class SearchServiceStub(object):
     Args:
       channel: A grpc.Channel.
     """
-    self.search = channel.unary_unary(
-        '/SearchService/search',
+    self.Search = channel.unary_unary(
+        '/SearchService/Search',
         request_serializer=SearchRequest.SerializeToString,
         response_deserializer=SearchResponse.FromString,
+        )
+    self.SayHello = channel.unary_unary(
+        '/SearchService/SayHello',
+        request_serializer=HelloRequest.SerializeToString,
+        response_deserializer=HelloReply.FromString,
         )
 
 
 class SearchServiceServicer(object):
 
-  def search(self, request, context):
+  def Search(self, request, context):
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def SayHello(self, request, context):
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
@@ -205,10 +293,15 @@ class SearchServiceServicer(object):
 
 def add_SearchServiceServicer_to_server(servicer, server):
   rpc_method_handlers = {
-      'search': grpc.unary_unary_rpc_method_handler(
-          servicer.search,
+      'Search': grpc.unary_unary_rpc_method_handler(
+          servicer.Search,
           request_deserializer=SearchRequest.FromString,
           response_serializer=SearchResponse.SerializeToString,
+      ),
+      'SayHello': grpc.unary_unary_rpc_method_handler(
+          servicer.SayHello,
+          request_deserializer=HelloRequest.FromString,
+          response_serializer=HelloReply.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(
@@ -217,25 +310,33 @@ def add_SearchServiceServicer_to_server(servicer, server):
 
 
 class BetaSearchServiceServicer(object):
-  def search(self, request, context):
+  def Search(self, request, context):
+    context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
+  def SayHello(self, request, context):
     context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
 
 
 class BetaSearchServiceStub(object):
-  def search(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
+  def Search(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
     raise NotImplementedError()
-  search.future = None
+  Search.future = None
+  def SayHello(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
+    raise NotImplementedError()
+  SayHello.future = None
 
 
 def beta_create_SearchService_server(servicer, pool=None, pool_size=None, default_timeout=None, maximum_timeout=None):
   request_deserializers = {
-    ('SearchService', 'search'): SearchRequest.FromString,
+    ('SearchService', 'SayHello'): HelloRequest.FromString,
+    ('SearchService', 'Search'): SearchRequest.FromString,
   }
   response_serializers = {
-    ('SearchService', 'search'): SearchResponse.SerializeToString,
+    ('SearchService', 'SayHello'): HelloReply.SerializeToString,
+    ('SearchService', 'Search'): SearchResponse.SerializeToString,
   }
   method_implementations = {
-    ('SearchService', 'search'): face_utilities.unary_unary_inline(servicer.search),
+    ('SearchService', 'SayHello'): face_utilities.unary_unary_inline(servicer.SayHello),
+    ('SearchService', 'Search'): face_utilities.unary_unary_inline(servicer.Search),
   }
   server_options = beta_implementations.server_options(request_deserializers=request_deserializers, response_serializers=response_serializers, thread_pool=pool, thread_pool_size=pool_size, default_timeout=default_timeout, maximum_timeout=maximum_timeout)
   return beta_implementations.server(method_implementations, options=server_options)
@@ -243,13 +344,16 @@ def beta_create_SearchService_server(servicer, pool=None, pool_size=None, defaul
 
 def beta_create_SearchService_stub(channel, host=None, metadata_transformer=None, pool=None, pool_size=None):
   request_serializers = {
-    ('SearchService', 'search'): SearchRequest.SerializeToString,
+    ('SearchService', 'SayHello'): HelloRequest.SerializeToString,
+    ('SearchService', 'Search'): SearchRequest.SerializeToString,
   }
   response_deserializers = {
-    ('SearchService', 'search'): SearchResponse.FromString,
+    ('SearchService', 'SayHello'): HelloReply.FromString,
+    ('SearchService', 'Search'): SearchResponse.FromString,
   }
   cardinalities = {
-    'search': cardinality.Cardinality.UNARY_UNARY,
+    'SayHello': cardinality.Cardinality.UNARY_UNARY,
+    'Search': cardinality.Cardinality.UNARY_UNARY,
   }
   stub_options = beta_implementations.stub_options(host=host, metadata_transformer=metadata_transformer, request_serializers=request_serializers, response_deserializers=response_deserializers, thread_pool=pool, thread_pool_size=pool_size)
   return beta_implementations.dynamic_stub(channel, 'SearchService', cardinalities, options=stub_options)

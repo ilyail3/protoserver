@@ -34,6 +34,8 @@ void protobuf_AddDesc_query_2eproto();
 void protobuf_AssignDesc_query_2eproto();
 void protobuf_ShutdownFile_query_2eproto();
 
+class HelloReply;
+class HelloRequest;
 class Result;
 class SearchRequest;
 class SearchResponse;
@@ -331,6 +333,172 @@ class SearchResponse : public ::google::protobuf::Message {
   void InitAsDefaultInstance();
   static SearchResponse* default_instance_;
 };
+// -------------------------------------------------------------------
+
+class HelloRequest : public ::google::protobuf::Message {
+ public:
+  HelloRequest();
+  virtual ~HelloRequest();
+
+  HelloRequest(const HelloRequest& from);
+
+  inline HelloRequest& operator=(const HelloRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const HelloRequest& default_instance();
+
+  void Swap(HelloRequest* other);
+
+  // implements Message ----------------------------------------------
+
+  inline HelloRequest* New() const { return New(NULL); }
+
+  HelloRequest* New(::google::protobuf::Arena* arena) const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const HelloRequest& from);
+  void MergeFrom(const HelloRequest& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(HelloRequest* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return _internal_metadata_.arena();
+  }
+  inline void* MaybeArenaPtr() const {
+    return _internal_metadata_.raw_arena_ptr();
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // optional string name = 1;
+  void clear_name();
+  static const int kNameFieldNumber = 1;
+  const ::std::string& name() const;
+  void set_name(const ::std::string& value);
+  void set_name(const char* value);
+  void set_name(const char* value, size_t size);
+  ::std::string* mutable_name();
+  ::std::string* release_name();
+  void set_allocated_name(::std::string* name);
+
+  // @@protoc_insertion_point(class_scope:HelloRequest)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  bool _is_default_instance_;
+  ::google::protobuf::internal::ArenaStringPtr name_;
+  mutable int _cached_size_;
+  friend void  protobuf_AddDesc_query_2eproto();
+  friend void protobuf_AssignDesc_query_2eproto();
+  friend void protobuf_ShutdownFile_query_2eproto();
+
+  void InitAsDefaultInstance();
+  static HelloRequest* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class HelloReply : public ::google::protobuf::Message {
+ public:
+  HelloReply();
+  virtual ~HelloReply();
+
+  HelloReply(const HelloReply& from);
+
+  inline HelloReply& operator=(const HelloReply& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const HelloReply& default_instance();
+
+  void Swap(HelloReply* other);
+
+  // implements Message ----------------------------------------------
+
+  inline HelloReply* New() const { return New(NULL); }
+
+  HelloReply* New(::google::protobuf::Arena* arena) const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const HelloReply& from);
+  void MergeFrom(const HelloReply& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(HelloReply* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return _internal_metadata_.arena();
+  }
+  inline void* MaybeArenaPtr() const {
+    return _internal_metadata_.raw_arena_ptr();
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // optional string msg = 1;
+  void clear_msg();
+  static const int kMsgFieldNumber = 1;
+  const ::std::string& msg() const;
+  void set_msg(const ::std::string& value);
+  void set_msg(const char* value);
+  void set_msg(const char* value, size_t size);
+  ::std::string* mutable_msg();
+  ::std::string* release_msg();
+  void set_allocated_msg(::std::string* msg);
+
+  // @@protoc_insertion_point(class_scope:HelloReply)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  bool _is_default_instance_;
+  ::google::protobuf::internal::ArenaStringPtr msg_;
+  mutable int _cached_size_;
+  friend void  protobuf_AddDesc_query_2eproto();
+  friend void protobuf_AssignDesc_query_2eproto();
+  friend void protobuf_ShutdownFile_query_2eproto();
+
+  void InitAsDefaultInstance();
+  static HelloReply* default_instance_;
+};
 // ===================================================================
 
 
@@ -588,7 +756,105 @@ SearchResponse::results() const {
   return results_;
 }
 
+// -------------------------------------------------------------------
+
+// HelloRequest
+
+// optional string name = 1;
+inline void HelloRequest::clear_name() {
+  name_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& HelloRequest::name() const {
+  // @@protoc_insertion_point(field_get:HelloRequest.name)
+  return name_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void HelloRequest::set_name(const ::std::string& value) {
+  
+  name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:HelloRequest.name)
+}
+inline void HelloRequest::set_name(const char* value) {
+  
+  name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:HelloRequest.name)
+}
+inline void HelloRequest::set_name(const char* value, size_t size) {
+  
+  name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:HelloRequest.name)
+}
+inline ::std::string* HelloRequest::mutable_name() {
+  
+  // @@protoc_insertion_point(field_mutable:HelloRequest.name)
+  return name_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* HelloRequest::release_name() {
+  
+  return name_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void HelloRequest::set_allocated_name(::std::string* name) {
+  if (name != NULL) {
+    
+  } else {
+    
+  }
+  name_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), name);
+  // @@protoc_insertion_point(field_set_allocated:HelloRequest.name)
+}
+
+// -------------------------------------------------------------------
+
+// HelloReply
+
+// optional string msg = 1;
+inline void HelloReply::clear_msg() {
+  msg_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& HelloReply::msg() const {
+  // @@protoc_insertion_point(field_get:HelloReply.msg)
+  return msg_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void HelloReply::set_msg(const ::std::string& value) {
+  
+  msg_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:HelloReply.msg)
+}
+inline void HelloReply::set_msg(const char* value) {
+  
+  msg_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:HelloReply.msg)
+}
+inline void HelloReply::set_msg(const char* value, size_t size) {
+  
+  msg_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:HelloReply.msg)
+}
+inline ::std::string* HelloReply::mutable_msg() {
+  
+  // @@protoc_insertion_point(field_mutable:HelloReply.msg)
+  return msg_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* HelloReply::release_msg() {
+  
+  return msg_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void HelloReply::set_allocated_msg(::std::string* msg) {
+  if (msg != NULL) {
+    
+  } else {
+    
+  }
+  msg_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), msg);
+  // @@protoc_insertion_point(field_set_allocated:HelloReply.msg)
+}
+
 #endif  // !PROTOBUF_INLINE_NOT_IN_HEADERS
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

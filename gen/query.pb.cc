@@ -28,6 +28,12 @@ const ::google::protobuf::internal::GeneratedMessageReflection*
 const ::google::protobuf::Descriptor* SearchResponse_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   SearchResponse_reflection_ = NULL;
+const ::google::protobuf::Descriptor* HelloRequest_descriptor_ = NULL;
+const ::google::protobuf::internal::GeneratedMessageReflection*
+  HelloRequest_reflection_ = NULL;
+const ::google::protobuf::Descriptor* HelloReply_descriptor_ = NULL;
+const ::google::protobuf::internal::GeneratedMessageReflection*
+  HelloReply_reflection_ = NULL;
 
 }  // namespace
 
@@ -87,6 +93,36 @@ void protobuf_AssignDesc_query_2eproto() {
       sizeof(SearchResponse),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(SearchResponse, _internal_metadata_),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(SearchResponse, _is_default_instance_));
+  HelloRequest_descriptor_ = file->message_type(3);
+  static const int HelloRequest_offsets_[1] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(HelloRequest, name_),
+  };
+  HelloRequest_reflection_ =
+    ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
+      HelloRequest_descriptor_,
+      HelloRequest::default_instance_,
+      HelloRequest_offsets_,
+      -1,
+      -1,
+      -1,
+      sizeof(HelloRequest),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(HelloRequest, _internal_metadata_),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(HelloRequest, _is_default_instance_));
+  HelloReply_descriptor_ = file->message_type(4);
+  static const int HelloReply_offsets_[1] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(HelloReply, msg_),
+  };
+  HelloReply_reflection_ =
+    ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
+      HelloReply_descriptor_,
+      HelloReply::default_instance_,
+      HelloReply_offsets_,
+      -1,
+      -1,
+      -1,
+      sizeof(HelloReply),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(HelloReply, _internal_metadata_),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(HelloReply, _is_default_instance_));
 }
 
 namespace {
@@ -105,6 +141,10 @@ void protobuf_RegisterTypes(const ::std::string&) {
       Result_descriptor_, &Result::default_instance());
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
       SearchResponse_descriptor_, &SearchResponse::default_instance());
+  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
+      HelloRequest_descriptor_, &HelloRequest::default_instance());
+  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
+      HelloReply_descriptor_, &HelloReply::default_instance());
 }
 
 }  // namespace
@@ -116,6 +156,10 @@ void protobuf_ShutdownFile_query_2eproto() {
   delete Result_reflection_;
   delete SearchResponse::default_instance_;
   delete SearchResponse_reflection_;
+  delete HelloRequest::default_instance_;
+  delete HelloRequest_reflection_;
+  delete HelloReply::default_instance_;
+  delete HelloReply_reflection_;
 }
 
 void protobuf_AddDesc_query_2eproto() {
@@ -129,17 +173,23 @@ void protobuf_AddDesc_query_2eproto() {
     "\001 \001(\t\022\023\n\013page_number\030\002 \001(\005\022\027\n\017result_per"
     "_page\030\003 \001(\005\"6\n\006Result\022\013\n\003url\030\001 \001(\t\022\r\n\005ti"
     "tle\030\002 \001(\t\022\020\n\010snippets\030\003 \003(\t\"*\n\016SearchRes"
-    "ponse\022\030\n\007results\030\001 \003(\0132\007.Result2:\n\rSearc"
-    "hService\022)\n\006search\022\016.SearchRequest\032\017.Sea"
-    "rchResponseb\006proto3", 259);
+    "ponse\022\030\n\007results\030\001 \003(\0132\007.Result\"\034\n\014Hello"
+    "Request\022\014\n\004name\030\001 \001(\t\"\031\n\nHelloReply\022\013\n\003m"
+    "sg\030\001 \001(\t2b\n\rSearchService\022)\n\006Search\022\016.Se"
+    "archRequest\032\017.SearchResponse\022&\n\010SayHello"
+    "\022\r.HelloRequest\032\013.HelloReplyb\006proto3", 356);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "query.proto", &protobuf_RegisterTypes);
   SearchRequest::default_instance_ = new SearchRequest();
   Result::default_instance_ = new Result();
   SearchResponse::default_instance_ = new SearchResponse();
+  HelloRequest::default_instance_ = new HelloRequest();
+  HelloReply::default_instance_ = new HelloReply();
   SearchRequest::default_instance_->InitAsDefaultInstance();
   Result::default_instance_->InitAsDefaultInstance();
   SearchResponse::default_instance_->InitAsDefaultInstance();
+  HelloRequest::default_instance_->InitAsDefaultInstance();
+  HelloReply::default_instance_->InitAsDefaultInstance();
   ::google::protobuf::internal::OnShutdown(&protobuf_ShutdownFile_query_2eproto);
 }
 
@@ -1261,6 +1311,548 @@ const ::google::protobuf::RepeatedPtrField< ::Result >&
 SearchResponse::results() const {
   // @@protoc_insertion_point(field_list:SearchResponse.results)
   return results_;
+}
+
+#endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
+
+// ===================================================================
+
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int HelloRequest::kNameFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+HelloRequest::HelloRequest()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:HelloRequest)
+}
+
+void HelloRequest::InitAsDefaultInstance() {
+  _is_default_instance_ = true;
+}
+
+HelloRequest::HelloRequest(const HelloRequest& from)
+  : ::google::protobuf::Message(),
+    _internal_metadata_(NULL) {
+  SharedCtor();
+  MergeFrom(from);
+  // @@protoc_insertion_point(copy_constructor:HelloRequest)
+}
+
+void HelloRequest::SharedCtor() {
+    _is_default_instance_ = false;
+  ::google::protobuf::internal::GetEmptyString();
+  _cached_size_ = 0;
+  name_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+
+HelloRequest::~HelloRequest() {
+  // @@protoc_insertion_point(destructor:HelloRequest)
+  SharedDtor();
+}
+
+void HelloRequest::SharedDtor() {
+  name_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (this != default_instance_) {
+  }
+}
+
+void HelloRequest::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* HelloRequest::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return HelloRequest_descriptor_;
+}
+
+const HelloRequest& HelloRequest::default_instance() {
+  if (default_instance_ == NULL) protobuf_AddDesc_query_2eproto();
+  return *default_instance_;
+}
+
+HelloRequest* HelloRequest::default_instance_ = NULL;
+
+HelloRequest* HelloRequest::New(::google::protobuf::Arena* arena) const {
+  HelloRequest* n = new HelloRequest;
+  if (arena != NULL) {
+    arena->Own(n);
+  }
+  return n;
+}
+
+void HelloRequest::Clear() {
+  name_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+
+bool HelloRequest::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:HelloRequest)
+  for (;;) {
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // optional string name = 1;
+      case 1: {
+        if (tag == 10) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->mutable_name()));
+          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+            this->name().data(), this->name().length(),
+            ::google::protobuf::internal::WireFormatLite::PARSE,
+            "HelloRequest.name"));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectAtEnd()) goto success;
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0 ||
+            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormatLite::SkipField(input, tag));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:HelloRequest)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:HelloRequest)
+  return false;
+#undef DO_
+}
+
+void HelloRequest::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:HelloRequest)
+  // optional string name = 1;
+  if (this->name().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->name().data(), this->name().length(),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "HelloRequest.name");
+    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
+      1, this->name(), output);
+  }
+
+  // @@protoc_insertion_point(serialize_end:HelloRequest)
+}
+
+::google::protobuf::uint8* HelloRequest::SerializeWithCachedSizesToArray(
+    ::google::protobuf::uint8* target) const {
+  // @@protoc_insertion_point(serialize_to_array_start:HelloRequest)
+  // optional string name = 1;
+  if (this->name().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->name().data(), this->name().length(),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "HelloRequest.name");
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        1, this->name(), target);
+  }
+
+  // @@protoc_insertion_point(serialize_to_array_end:HelloRequest)
+  return target;
+}
+
+int HelloRequest::ByteSize() const {
+  int total_size = 0;
+
+  // optional string name = 1;
+  if (this->name().size() > 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::StringSize(
+        this->name());
+  }
+
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = total_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void HelloRequest::MergeFrom(const ::google::protobuf::Message& from) {
+  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+  const HelloRequest* source = 
+      ::google::protobuf::internal::DynamicCastToGenerated<const HelloRequest>(
+          &from);
+  if (source == NULL) {
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+    MergeFrom(*source);
+  }
+}
+
+void HelloRequest::MergeFrom(const HelloRequest& from) {
+  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+  if (from.name().size() > 0) {
+
+    name_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.name_);
+  }
+}
+
+void HelloRequest::CopyFrom(const ::google::protobuf::Message& from) {
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void HelloRequest::CopyFrom(const HelloRequest& from) {
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool HelloRequest::IsInitialized() const {
+
+  return true;
+}
+
+void HelloRequest::Swap(HelloRequest* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void HelloRequest::InternalSwap(HelloRequest* other) {
+  name_.Swap(&other->name_);
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  std::swap(_cached_size_, other->_cached_size_);
+}
+
+::google::protobuf::Metadata HelloRequest::GetMetadata() const {
+  protobuf_AssignDescriptorsOnce();
+  ::google::protobuf::Metadata metadata;
+  metadata.descriptor = HelloRequest_descriptor_;
+  metadata.reflection = HelloRequest_reflection_;
+  return metadata;
+}
+
+#if PROTOBUF_INLINE_NOT_IN_HEADERS
+// HelloRequest
+
+// optional string name = 1;
+void HelloRequest::clear_name() {
+  name_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+ const ::std::string& HelloRequest::name() const {
+  // @@protoc_insertion_point(field_get:HelloRequest.name)
+  return name_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+ void HelloRequest::set_name(const ::std::string& value) {
+  
+  name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:HelloRequest.name)
+}
+ void HelloRequest::set_name(const char* value) {
+  
+  name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:HelloRequest.name)
+}
+ void HelloRequest::set_name(const char* value, size_t size) {
+  
+  name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:HelloRequest.name)
+}
+ ::std::string* HelloRequest::mutable_name() {
+  
+  // @@protoc_insertion_point(field_mutable:HelloRequest.name)
+  return name_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+ ::std::string* HelloRequest::release_name() {
+  
+  return name_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+ void HelloRequest::set_allocated_name(::std::string* name) {
+  if (name != NULL) {
+    
+  } else {
+    
+  }
+  name_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), name);
+  // @@protoc_insertion_point(field_set_allocated:HelloRequest.name)
+}
+
+#endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
+
+// ===================================================================
+
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int HelloReply::kMsgFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+HelloReply::HelloReply()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:HelloReply)
+}
+
+void HelloReply::InitAsDefaultInstance() {
+  _is_default_instance_ = true;
+}
+
+HelloReply::HelloReply(const HelloReply& from)
+  : ::google::protobuf::Message(),
+    _internal_metadata_(NULL) {
+  SharedCtor();
+  MergeFrom(from);
+  // @@protoc_insertion_point(copy_constructor:HelloReply)
+}
+
+void HelloReply::SharedCtor() {
+    _is_default_instance_ = false;
+  ::google::protobuf::internal::GetEmptyString();
+  _cached_size_ = 0;
+  msg_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+
+HelloReply::~HelloReply() {
+  // @@protoc_insertion_point(destructor:HelloReply)
+  SharedDtor();
+}
+
+void HelloReply::SharedDtor() {
+  msg_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (this != default_instance_) {
+  }
+}
+
+void HelloReply::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* HelloReply::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return HelloReply_descriptor_;
+}
+
+const HelloReply& HelloReply::default_instance() {
+  if (default_instance_ == NULL) protobuf_AddDesc_query_2eproto();
+  return *default_instance_;
+}
+
+HelloReply* HelloReply::default_instance_ = NULL;
+
+HelloReply* HelloReply::New(::google::protobuf::Arena* arena) const {
+  HelloReply* n = new HelloReply;
+  if (arena != NULL) {
+    arena->Own(n);
+  }
+  return n;
+}
+
+void HelloReply::Clear() {
+  msg_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+
+bool HelloReply::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:HelloReply)
+  for (;;) {
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // optional string msg = 1;
+      case 1: {
+        if (tag == 10) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->mutable_msg()));
+          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+            this->msg().data(), this->msg().length(),
+            ::google::protobuf::internal::WireFormatLite::PARSE,
+            "HelloReply.msg"));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectAtEnd()) goto success;
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0 ||
+            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormatLite::SkipField(input, tag));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:HelloReply)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:HelloReply)
+  return false;
+#undef DO_
+}
+
+void HelloReply::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:HelloReply)
+  // optional string msg = 1;
+  if (this->msg().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->msg().data(), this->msg().length(),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "HelloReply.msg");
+    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
+      1, this->msg(), output);
+  }
+
+  // @@protoc_insertion_point(serialize_end:HelloReply)
+}
+
+::google::protobuf::uint8* HelloReply::SerializeWithCachedSizesToArray(
+    ::google::protobuf::uint8* target) const {
+  // @@protoc_insertion_point(serialize_to_array_start:HelloReply)
+  // optional string msg = 1;
+  if (this->msg().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->msg().data(), this->msg().length(),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "HelloReply.msg");
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        1, this->msg(), target);
+  }
+
+  // @@protoc_insertion_point(serialize_to_array_end:HelloReply)
+  return target;
+}
+
+int HelloReply::ByteSize() const {
+  int total_size = 0;
+
+  // optional string msg = 1;
+  if (this->msg().size() > 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::StringSize(
+        this->msg());
+  }
+
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = total_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void HelloReply::MergeFrom(const ::google::protobuf::Message& from) {
+  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+  const HelloReply* source = 
+      ::google::protobuf::internal::DynamicCastToGenerated<const HelloReply>(
+          &from);
+  if (source == NULL) {
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+    MergeFrom(*source);
+  }
+}
+
+void HelloReply::MergeFrom(const HelloReply& from) {
+  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+  if (from.msg().size() > 0) {
+
+    msg_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.msg_);
+  }
+}
+
+void HelloReply::CopyFrom(const ::google::protobuf::Message& from) {
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void HelloReply::CopyFrom(const HelloReply& from) {
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool HelloReply::IsInitialized() const {
+
+  return true;
+}
+
+void HelloReply::Swap(HelloReply* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void HelloReply::InternalSwap(HelloReply* other) {
+  msg_.Swap(&other->msg_);
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  std::swap(_cached_size_, other->_cached_size_);
+}
+
+::google::protobuf::Metadata HelloReply::GetMetadata() const {
+  protobuf_AssignDescriptorsOnce();
+  ::google::protobuf::Metadata metadata;
+  metadata.descriptor = HelloReply_descriptor_;
+  metadata.reflection = HelloReply_reflection_;
+  return metadata;
+}
+
+#if PROTOBUF_INLINE_NOT_IN_HEADERS
+// HelloReply
+
+// optional string msg = 1;
+void HelloReply::clear_msg() {
+  msg_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+ const ::std::string& HelloReply::msg() const {
+  // @@protoc_insertion_point(field_get:HelloReply.msg)
+  return msg_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+ void HelloReply::set_msg(const ::std::string& value) {
+  
+  msg_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:HelloReply.msg)
+}
+ void HelloReply::set_msg(const char* value) {
+  
+  msg_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:HelloReply.msg)
+}
+ void HelloReply::set_msg(const char* value, size_t size) {
+  
+  msg_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:HelloReply.msg)
+}
+ ::std::string* HelloReply::mutable_msg() {
+  
+  // @@protoc_insertion_point(field_mutable:HelloReply.msg)
+  return msg_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+ ::std::string* HelloReply::release_msg() {
+  
+  return msg_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+ void HelloReply::set_allocated_msg(::std::string* msg) {
+  if (msg != NULL) {
+    
+  } else {
+    
+  }
+  msg_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), msg);
+  // @@protoc_insertion_point(field_set_allocated:HelloReply.msg)
 }
 
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
