@@ -1,20 +1,8 @@
 #include <iostream>
-
-#include <grpc++/grpc++.h>
 #include <fstream>
 
-#include "gen/query.grpc.pb.h"
 #include "searchservice_sayhello.h"
 #include "searchservice_search.h"
-
-
-using grpc::Server;
-using grpc::ServerAsyncResponseWriter;
-using grpc::ServerBuilder;
-using grpc::ServerContext;
-using grpc::ServerCompletionQueue;
-using grpc::Status;
-
 
 class ServerImpl final {
 public:

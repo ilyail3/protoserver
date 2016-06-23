@@ -2,22 +2,9 @@
 // Created by ilya on 6/21/16.
 //
 
-#ifndef PROTO_SERVER_SEARCH_SEARCH_H
-#define PROTO_SERVER_SEARCH_SEARCH_H
+#pragma once
 
-
-#include <iostream>
-#include <grpc++/grpc++.h>
-#include "gen/query.grpc.pb.h"
 #include "searchservice_function.h"
-
-using grpc::Server;
-using grpc::ServerAsyncResponseWriter;
-using grpc::ServerBuilder;
-using grpc::ServerContext;
-using grpc::ServerCompletionQueue;
-using grpc::Status;
-
 
 class SearchService_Search : public SearchService_Function {
 public:
@@ -50,6 +37,3 @@ private:
     ServerAsyncResponseWriter<SearchResponse> responder_;
 
 };
-
-
-#endif // PROTO_SERVER_SEARCH_SEARCH_H

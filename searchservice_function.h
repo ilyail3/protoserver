@@ -2,8 +2,7 @@
 // Created by ilya on 6/23/16.
 //
 
-#ifndef PROTO_SERVER_SEARCHSERVICE_FUNCTION_H
-#define PROTO_SERVER_SEARCHSERVICE_FUNCTION_H
+#pragma once
 
 #include <iostream>
 #include <grpc++/grpc++.h>
@@ -82,5 +81,3 @@ private:
     CallStatus status_;  // The current serving state.
 
 };
-
-#endif //PROTO_SERVER_SEARCHSERVICE_FUNCTION_H

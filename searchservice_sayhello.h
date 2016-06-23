@@ -2,22 +2,9 @@
 // Created by ilya on 6/21/16.
 //
 
-#ifndef PROTO_SERVER_SEARCH_SAY_HELLO_H
-#define PROTO_SERVER_SEARCH_SAY_HELLO_H
+#pragma once
 
-
-#include <iostream>
-#include <grpc++/grpc++.h>
-#include "gen/query.grpc.pb.h"
 #include "searchservice_function.h"
-
-using grpc::Server;
-using grpc::ServerAsyncResponseWriter;
-using grpc::ServerBuilder;
-using grpc::ServerContext;
-using grpc::ServerCompletionQueue;
-using grpc::Status;
-
 
 class SearchService_SayHello : public SearchService_Function {
 public:
@@ -51,5 +38,3 @@ private:
 
 };
 
-
-#endif //PROTO_SERVER_SEARCH_SAY_HELLO_H
